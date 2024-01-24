@@ -61,7 +61,7 @@ int is_palindrome(listint_t **head)
 	if (count == 0)
 	{
 		free(arr);
-		return (0);
+		return (1);
 	}
 	st = 0;
 	end = count - 1;
