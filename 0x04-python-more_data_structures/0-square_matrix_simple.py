@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def square_matrix_simple(matrix=[]):
     sqr = []
     for mat in matrix:
