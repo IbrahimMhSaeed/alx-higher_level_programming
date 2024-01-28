@@ -8,7 +8,7 @@ def weight_average(my_list=[]):
     summ = 0
     for t in my_list:
         val, wei = t
-        summ = summ + (val  * wei)
+        summ = summ + (val * wei)
         weight = weight + wei
     ans = float(summ) / weight
     return (ans)
