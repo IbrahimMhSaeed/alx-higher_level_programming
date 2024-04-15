@@ -32,8 +32,9 @@ where 100 is the default value for x if it doesn't exist
 ## Encapsulation
 
 accomplished by providing two kinds of methods for attributes:
-1) Getter		2) Setter
-
+1) Getter
+2) Setter
+```
 class Robot:
     def __init__(self, name=None):
         self.name = name   
@@ -43,15 +44,19 @@ class Robot:
         else:
             print("Hi, I am a robot without a name")
 
-* This is the important piece of code
+# This is the important piece of code
 
     def set_name(self, name):
 	self.name = name
     def get_name(self):
 	return self.name
-
+```
 ## __str__ and __repr__
 
+-`__str__` represent the output that will be printed when ur class is placed inside __print()__ function
+
+-`__repr__` represent the output that will be printed when ur class is written iside interpreter __without print() function__
+```
 class Robot:
     def __init__(self, name, build_year):
 	self.name = name
@@ -62,34 +67,34 @@ class Robot:
     def __str__(self):
 	return "Name: " + self.name + ", Build Year: " +  str(self.build_year)
 
-* To use them u need to use
+# To use them u need to use
 
 c_103 = Robot("Mebo", "1970")
 str(c_103)
 repr(c_103)
-
+```
 
 ## Public, - Protected-, and Private Attributes
-
+```
 class A():
     def __init__(self):
         self.__priv = "I am private"
         self._prot = "I am protected"
         self.pub = "I am public"
+```
+*Note for private attributes we need to set a "getter" and a "setter" for each of them if we need to make user able to adjust there values.*
 
-Note for private attributes we need to set a "getter" and a "setter" for each of them if we need to make user able to adjust there values.
+*Note by doing this you are protecting ur code by monitoring user input for each and every attr*
 
-Note by doing this you are protecting ur code by monitoring user input for each and every attr
-
-!!Important
+**!!Important**
 There are at least two good reasons against such an approach. First of all not every private attribute needs to be accessed from outside. Second, we will create non-pythonic code this way, as you will learn soon.
 
 
 ## Destructor
-
+```
 def __del__(self):
         print ("Robot has been destroyed")
-
+```
 runs when the object is destroyed
 
 
@@ -99,8 +104,8 @@ Unfortunately, it is widespread belief that a proper Python class should encapsu
 
 ### Javasequence way (not Pythonic)
 
-First, we demonstrate in the following example, how we can design a class in a Javaesque way with getters and setters to encapsulate the private attribute self.__x:
-
+First, we demonstrate in the following example, how we can design a class in a Javaesque way with getters and setters to encapsulate the private attribute `self.__x`:
+```
 class P:
 
     def __init__(self, x):
@@ -114,12 +119,13 @@ class P:
 
 p1.set_x(p1.get_x()+p2.get_x())
 
-
-* What do you think about the expression "p1.set_x(p1.get_x()+p2.get_x())"? It's ugly, isn't it?
+```
+What do you think about the expression "`p1.set_x(p1.get_x()+p2.get_x())`"? It's ugly, isn't it?
 
 
 ### Pythonic Way
 
+```
 class P:
 
     def __init__(self,x):
@@ -127,11 +133,12 @@ class P:
 
 p1.x = p1.x + p2.x
 
-*"But there is NO data ENCAPSULATION!" 
+```
+*"But there is NO data ENCAPSULATION!"* 
 
 
 #### assume we want to change the implementation like this: The attribute x can have values between 0 and 1000.
-
+```
 class P:
 
     def __init__(self, x):
@@ -149,21 +156,202 @@ class P:
             self.__x = 1000
         else:
             self.__x = x
-
-Note the following:
+```
+**Note the following:**
 
 1) We defined the variable as public
 
 2) We added the decorator "@property" before the getter function that have the same name as the variable "x"
-
+```
     @property
     def x(self):
 	return self.__x
+```
+3) We refer to the variable x in the getter function with "`self.__x`" as it was a private varible (which it is!)
 
-3) We refer to the variable x in the getter function with "self.__x" as it was a private varible (which it is!)
-
-4) We added "@.setter" before the setter function_ and inside it we can define any setter conditions we want
+4) We added "@.setter" before the setter function and inside it we can define any setter conditions we want
 
 ## How to create attribute that depends on value of other private ones?
+```
+class Robot:
+
+	def __init__(self, name, year, lk = 0.5, lp = 0.5):
+		self.name = name
+		self.year = year
+		self.__physical = lk
+		self.__psychic = lp
+
+	@property
+	def condition(self):
+		s = self.__physical + self.__psychic
+		if s <= -1:
+			return "I feel miserable!"
+		elif s <= 0:
+			return "I feel bad!"
+		elif s <= 0.5:
+			return "Could be worse!"
+		else:
+			return "I feel Great!"
+```
+Now we can Use the class
+```
+if __name__ == "__main__":
+    x = Robot("Marvin", 1979, 0.2, 0.4 )
+    y = Robot("Caliban", 1993, -0.4, 0.3)
+    print(x.condition)
+    print(y.condition)
+
+```
+
+## When to use Public & when to use Private?
 
 
+- Will the value of "OurAtt" be needed by the possible users of our class?
+	- If not, we should make it a private attribute.
+	- If it has to be accessed, we make it accessible as a public attribute
+
+- We will define it as a private attribute with the corresponding property, if and only if we have to do some checks or transformation of the data. (As an example, you can have a look again at our class P, where the attribute has to be in the interval between 0 and 1000, which is ensured by the property "x")
+
+- Alternatively, you could use a getter and a setter, but using a property is the Pythonic way to deal with it!
+
+
+### Example of changing Public to Private (Pythonic Way!):
+
+Assume we have the following attribute:
+```
+class OurClass:
+
+    def __init__(self, a):
+        self.OurAtt = a
+```
+and we can use it like this:
+```
+x = OurClass(10)
+print(x.OurAtt)
+```
+and we needed to change "OurAtt" to private one, we will only have to add few lines as follows:
+```
+class OurClass:
+
+    def __init__(self, a):
+        self.OurAtt = a
+
+    @property
+    def OurAtt(self):
+        return self.__OurAtt
+
+    @OurAtt.setter
+    def OurAtt(self, val):
+        if val < 0:
+            self.__OurAtt = 0
+        elif val > 1000:
+            self.__OurAtt = 1000
+        else:
+            self.__OurAtt = val
+```
+We can also use it like this
+```
+x = OurClass(10)
+print(x.OurAtt)
+```
+**Note that the usage of "OurAtt" hasn't changed!**
+
+## Generic Getters and Setters (`__getattr__ and __setattr__`)
+
+Assume the following senario:
+```
+class Robot:
+    def __init__(self, name, build_year, city):
+        self.name = name
+        self.build_year = build_year
+        self.city = city
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def build_year(self):
+        return self.__build_year
+
+    @property
+    def city(self):
+        return self.__city
+
+    @name.setter
+    def name(self, value):
+        self.__name = value
+
+    @build_year.setter
+    def build_year(self, value):
+        self.__build_year = value
+
+    @city.setter
+    def city(self, value):
+        self.__city = value
+```
+Example usage:
+```
+robot = Robot("RoboBot", 2022, "TechCity")
+
+print(robot.name)
+print(robot.build_year)
+print(robot.city)
+```
+
+We can group them all together using the following:
+```
+class Robot:
+    
+    def __init__(self, name, build_year, city):
+        self.name = name
+        self.build_year = build_year
+        self.city = city
+
+    def __getattr__(self, name):
+	return self.__dict__[f"__{name}"]
+
+    def __setattr__(self, name, value):
+	self.__dict__[f"__{name}"] = value
+```
+
+Also we can specify specific safety conditions for setters:
+
+```
+def __setattr__(self, name, value):
+        if name == 'name':
+            if value in ['Henry', 'Oscar']:
+                raise ValueError('Not a decent Robot name')
+        elif name == 'build_year':
+            if int(value) < 2020:
+                raise ValueError('Build Year has to be after 2019')
+        self.__dict__[f"__{name}"] = value
+```
+
+## When to use Ordinary setter and getter methods (Non-Pythonic Way)
+
+- Dynamic Computation or Validation:
+If getting or setting an attribute involves complex computations or validation that goes beyond simple attribute access
+
+```
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+
+    def get_area(self):
+        return 3.14 * self._radius**2
+
+    def set_radius(self, value):
+        if value < 0:
+            raise ValueError("Radius must be non-negative")
+        self._radius = value
+```
+- Additional Arguments to Attributes 
+If you need to pass more arguments for setters (much more that just a value)
+
+```
+def set_height(self, value, validate=True):
+        if validate and not (150 <= value <= 200):
+            raise ValueError("Height must be between 150 and 200 cm.")
+        self._height = value
+```
