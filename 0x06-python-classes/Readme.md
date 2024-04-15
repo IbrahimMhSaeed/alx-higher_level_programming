@@ -8,17 +8,17 @@ check file "robot.py" for more robust example
 
 1) created by the keyword "class"
 
-class myClass:
+	class myClass:
 
-	population = 0  #This is a global Class variable
+		population = 0  #This is a global Class variable
 
-	def __init(self, name):
-	#Create object variables
-		self.name = name
+		def __init__(self, name):
+		#Create object variables
+			self.name = name
 
-	@classmethod
-	def how_many(cls):
-		print(f"we have {cls.population} robots")
+		@classmethod
+		def how_many(cls):
+			print(f"we have {cls.population} robots")
 
 2) example above show how to create class method (use class variables)
 
