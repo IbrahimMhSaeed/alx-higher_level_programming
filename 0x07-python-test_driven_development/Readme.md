@@ -154,7 +154,106 @@ python3 -m unittest test-calc.py
 
 ## Optional Reading
 
-###
+### Using Flags to Solve Problems in Section `Unittest/Warnings`
+
+#### Handling Unpredictable Output
+When the actual value is not important to the test results
+
+file `doctest_unpredictable.py`
+```
+class MyClass:
+    pass
+
+
+def unpredictable(obj):
+    """Returns a new list containing obj.
+
+    >>> unpredictable(MyClass()) #doctest: +ELLIPSIS
+    [<doctest_unpredictable.MyClass object at 0x...>]
+    """
+    return [obj]
+```
+
+cases where the unpredictable value cannot be ignored, because that would make the test incomplete or inaccurate.
+
+#### Tracebacks
+
+In fact, the entire body of the traceback is ignored and can be omitted.
+```
+def this_raises():
+    """This function always raises an exception.
+
+    >>> this_raises()
+    Traceback (most recent call last):
+    RuntimeError: here is the error
+
+    >>> this_raises()
+    Traceback (innermost last):
+    RuntimeError: here is the error
+    """
+    raise RuntimeError('here is the error')
+```
+#### Working Around Whitespace
+```
+def double_space(lines):
+    """Prints a list of lines double-spaced.
+
+    >>> double_space(['Line one.', 'Line two.'])
+    Line one.
+    <BLANKLINE>
+    Line two.
+    <BLANKLINE>
+    """
+    for l in lines:
+        print(l)
+        print()
+```
+
+**Extra spaces can find their way into code via copy-and-paste errors, but since they come at the end of the line, they can go unnoticed in the source file and be invisible in the test failure report as well.**
+
+`REPORT_NDIFF` shows the difference between the actual and expected values with more detail, and the extra space becomes visible.
+
+```
+def my_function(a, b):
+    """
+    >>> my_function(2, 3) #doctest: +REPORT_NDIFF
+    6 
+    >>> my_function('a', 3)
+    'aaa'
+    """
+    return a * b
+```
+
+```
+$ python3 -m doctest -v doctest_ndiff.py
+
+Trying:
+    my_function(2, 3) #doctest: +REPORT_NDIFF
+Expecting:
+    6
+****************************************************************
+File ".../doctest_ndiff.py", line 16, in doctest_ndiff.my_functi
+on
+Failed example:
+    my_function(2, 3) #doctest: +REPORT_NDIFF
+Differences (ndiff with -expected +actual):
+    - 6
+    ?  -
+    + 6
+Trying:
+    my_function('a', 3)
+Expecting:
+    'aaa'
+ok
+1 items had no tests:
+    doctest_ndiff
+****************************************************************
+1 items had failures:
+   1 of   2 in doctest_ndiff.my_function
+2 tests in 2 items.
+1 passed and 1 failed.
+***Test Failed*** 1 failures.
+```
 
 ### Different Assertion Methods
 
