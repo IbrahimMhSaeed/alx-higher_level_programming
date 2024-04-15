@@ -21,7 +21,7 @@ class Square:
     @size.setter
     def size(self, value):
         """ Function to set size after checking """
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
@@ -31,7 +31,7 @@ class Square:
     @position.setter
     def position(self, value):
         """ Set value of position after some checks """
-        if type(value) == tuple and len(value) == 2:
+        if isinstance(value, tuple) and len(value) == 2:
             self.__position = value
         else:
             raise TypeError("position must be a tuple of 2 positive integers")
