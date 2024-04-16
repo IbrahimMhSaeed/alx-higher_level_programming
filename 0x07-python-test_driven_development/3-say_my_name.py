@@ -26,7 +26,7 @@ def say_my_name(first_name, last_name=""):
     abc = set(abc)
 
     print("My name is ", end="")
-    
+
     for c in first_name:
         if c in abc:
             print(c, end="")
