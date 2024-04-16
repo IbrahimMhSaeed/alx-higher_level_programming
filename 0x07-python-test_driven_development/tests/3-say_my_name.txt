@@ -1,0 +1,10 @@
+>>> name = __import__('3-say_my_name').say_my_name
+>>> name("ibrahim", "Mohammed")
+My name is ibrahim Mohammed
+>>> name("ib_____%%@rahi,,,......m", "Mohammed")
+My name is ibrahim Mohammed
+>>> name("ib_____%%@ra\n\n\nhi,,,......m", "Mohammed")
+My name is ibrahim Mohammed
+>>> name("ib_____%%@ra\n\n\nhi,,,......m", "Mohamme                                                                  d")
+My name is ibrahim Mohammed
+

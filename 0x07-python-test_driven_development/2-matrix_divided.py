@@ -12,10 +12,11 @@ def matrix_divided(matrix, div):
     Returns:
         matrix after division
     """
+    e = "matrix must be a matrix (list of lists)of integers/floats"
     if not isinstance(matrix, list):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(e)
     elif len(matrix) == 0:
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(e)
 
     if not isinstance(div, int) and not isinstance(div, float):
         raise TypeError("div must be a number")
@@ -28,7 +29,7 @@ def matrix_divided(matrix, div):
     for i, row in enumerate(matrix):
         result.append([])
         if not isinstance(row, list):
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+            raise TypeError(e)
 
         lenM = len(matrix[0])
         if len(row) != lenM:
@@ -36,7 +37,7 @@ def matrix_divided(matrix, div):
 
         for j, ele in enumerate(row):
             if not isinstance(ele, int) and not isinstance(ele, float):
-                raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+                raise TypeError(e)
 
             ans = ele / div
 
@@ -46,6 +47,5 @@ def matrix_divided(matrix, div):
             ans = round(ans, 2)
 
             result[i].append(ans)
-    
-    return result
 
+    return result
