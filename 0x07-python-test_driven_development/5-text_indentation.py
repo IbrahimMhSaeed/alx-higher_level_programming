@@ -21,17 +21,13 @@ def text_indentation(text):
 
     for i, c in enumerate(text):
         if c in ".?:":
-            end = i - 1
-            if i == (len(text) - 1):
-                end = i
+            end = i
 
             start, end = remove_spaces(start, end, text)
-            if (end - start) != 0:
-                print(text[start:end+1])
-            else:
-                print("")
+
+            print(text[start:end+1])
             print("")
-            start = end + 2
+            start = end + 1
         if i == (len(text) - 1) and c not in ".?:":
             start, end = remove_spaces(start, end, text)
             print(text[start:], end="")

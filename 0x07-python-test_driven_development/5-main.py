@@ -9,5 +9,5 @@ Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
 rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
 stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
 cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
-beatiorem! Iam ruinas v??ideres?????""")
+:beatiorem! Iam ruinas v??ideres?????""")
 
