@@ -20,5 +20,5 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_int([1, 2, 3]), 3)
         self.assertEqual(max_int([-1, -2, -3]), -1)
         self.assertEqual(max_int([123333, 2334, 999]), 123333)
-        self.assertEqual(max_int([2]), 2))
+        self.assertEqual(max_int([2]), 2)
         self.assertEqual(max_int([1, 3, 2]), 3)
