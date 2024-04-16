@@ -12,7 +12,7 @@ def matrix_divided(matrix, div):
     Returns:
         matrix after division
     """
-    e = "matrix must be a matrix (list of lists)of integers/floats"
+    e = "matrix must be a matrix (list of lists) of integers/floats"
     if not isinstance(matrix, list):
         raise TypeError(e)
     elif len(matrix) == 0:
