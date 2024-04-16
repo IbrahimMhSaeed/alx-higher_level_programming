@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """ text indentation module """
 
+
 def remove_spaces(start, end, text):
+    """ function to remove space """
     while text[start] == " " or text[end] == " ":
         if text[start] == " ":
             start += 1
@@ -10,12 +12,14 @@ def remove_spaces(start, end, text):
             end -= 1
 
     return (start, end)
+
+
 def text_indentation(text):
     """ text indentation function """
 
     if not isinstance(text, str):
         raise TypeError("text must be a string")
-    
+
     start = 0
     end = 0
 
