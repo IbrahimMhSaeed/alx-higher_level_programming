@@ -1,0 +1,23 @@
+>>> square = __import__('4-print_square').print_square
+>>> square(float('inf'))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/ibrahimmhsaeed/alx/alx-higher_level_programming/0x07-python-test_driven_development/4-print_square.py", line 8, in print_square
+    raise TypeError("size must be an integer")
+TypeError: size must be an integer
+>>> square(1.222)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/ibrahimmhsaeed/alx/alx-higher_level_programming/0x07-python-test_driven_development/4-print_square.py", line 8, in print_square
+    raise TypeError("size must be an integer")
+TypeError: size must be an integer
+>>> square(-1.222)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/ibrahimmhsaeed/alx/alx-higher_level_programming/0x07-python-test_driven_development/4-print_square.py", line 8, in print_square
+    raise TypeError("size must be an integer")
+TypeError: size must be an integer
+>>> square(0)
+>>> square(1)
+#
+
