@@ -27,11 +27,11 @@ def text_indentation(text):
         if c in ".?:":
             end = i
 
-            start, end = remove_spaces(start, end, text)
+            s, e = remove_spaces(start, end, text)
 
-            print(text[start:end+1])
+            print(text[s:e+1])
             print("")
             start = end + 1
         if i == (len(text) - 1) and c not in ".?:":
-            start, end = remove_spaces(start, end, text)
-            print(text[start:], end="")
+            s, e = remove_spaces(start, end, text)
+            print(text[s:], end="")
