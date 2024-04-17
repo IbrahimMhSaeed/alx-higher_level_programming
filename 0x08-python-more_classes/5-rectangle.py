@@ -58,3 +58,11 @@ class Rectangle:
             p = ("#" * self.__width + "\n") * (self.__height - 1)
             p = p + ("#" * self.__width)
             return p
+
+    def __repr__(self):
+        """ repr for class """
+        return "Rectangle({}, {})".format(self.__width, self.__height)
+
+    def __del__(self):
+        """ deletion message """
+        print("Bye rectangle...")

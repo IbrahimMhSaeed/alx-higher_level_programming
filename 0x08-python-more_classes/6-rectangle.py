@@ -4,10 +4,14 @@
 
 class Rectangle:
     """ This is my Rectangle class """
+    
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
         """ init function to initialize """
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -58,3 +62,12 @@ class Rectangle:
             p = ("#" * self.__width + "\n") * (self.__height - 1)
             p = p + ("#" * self.__width)
             return p
+
+    def __repr__(self):
+        """ repr for class """
+        return "Rectangle({}, {})".format(self.__width, self.__height)
+
+    def __del__(self):
+        """ deletion message """
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
