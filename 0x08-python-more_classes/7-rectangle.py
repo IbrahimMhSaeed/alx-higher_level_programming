@@ -4,7 +4,7 @@
 
 class Rectangle:
     """ This is my Rectangle class """
-    
+
     number_of_instances = 0
     print_symbol = "#"
 

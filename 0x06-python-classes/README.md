@@ -51,11 +51,23 @@ class Robot:
     def get_name(self):
 	return self.name
 ```
-## __str__ and __repr__
+## `__str__` and `__repr__`
 
--`__str__` represent the output that will be printed when ur class is placed inside __print()__ function
+- `__str__` represent the output that will be printed when ur class is placed inside __print()__ function
 
--`__repr__` represent the output that will be printed when ur class is written iside interpreter __without print() function__
+- `__repr__` represent the output that will be printed when ur class is written iside interpreter without print() function
+
+*The content of __repr__ should be the stirng that can recreate the object when eval() is called*
+
+example:
+```
+def __repr__(self):
+	return "Rectangle({}, {})".format(self.__width, self.__height)
+
+rect_2 = eval(rect_1)
+
+# will create new rect with same values
+```
 ```
 class Robot:
     def __init__(self, name, build_year):
