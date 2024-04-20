@@ -9,4 +9,3 @@ class MyList(list):
         ll = [x for x in self]
         ll.sort()
         print(ll)
-
