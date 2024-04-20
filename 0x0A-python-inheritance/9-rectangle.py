@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ rectangle class  module """
 
+
 class BaseGeometry:
     """ BaseGeometry class """
     def area(self):
@@ -9,10 +10,11 @@ class BaseGeometry:
 
     def integer_validator(self, name, value):
         """ integer validator """
-        if not (value.__class__ ==  int):
+        if not (value.__class__ == int):
             raise TypeError("{} must be an integer".format(name))
         if value <= 0:
             raise ValueError("{} must be greater than 0".format(name))
+
 
 class Rectangle(BaseGeometry):
     """ BaseGeometry class """
