@@ -19,6 +19,43 @@ to check an instance’s type: `isinstance(obj, int)` will be True only if `obj.
 - `issubclass()`:
 to check class inheritance: issubclass(bool, int) is True since bool is a subclass of int. However, issubclass(float, int) is False since float is not a subclass of int.
 
+
+### `isinstance()` vs `issubclass()`
+
+`isinstance()`:
+asks whether an object is an instance of a class (or a tuple of classes)
+
+`issubclass()`: asks whether one class is a subclass of another class (or other classes)
+
+```
+class Foo:
+	pass
+
+class Bar(Foo):
+	pass
+
+issubclass(Bar, Foo)
+#>True
+isinstance(Bar, Foo)
+#>False
+```
+
+Bar is a subclass of Foo, not an instance of it.
+Bar is an instance of type which is a subclass of object
+
+Bar (instance) => type (subclass) => object
+
+Bar (instance) => object
+
+```
+isinstance(Bar, type)
+#>True
+issubclass(type, object)
+#>True
+isinstance(Bar, object)
+#>True
+```
+
 ## Multiple Inheritance
 
 Python supports a form of multiple inheritance as well.
