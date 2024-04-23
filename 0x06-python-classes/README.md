@@ -215,6 +215,16 @@ if __name__ == "__main__":
 
 ```
 
+### Why to use @property
+
+The @property decorator in Python is a powerful tool for creating read- only attributes for your classes. It allows you to define a method that acts like a regular attribute but provides more control over how the value is accessed and calculated.
+
+- Validation and error handling:
+You can implement validation or error handling within the property method to ensure the returned value is valid and handle potential issues.
+
+- Documentation:
+Properties can be documented like regular methods, providing clear explanations of how they work and what values they return.
+
 ## When to use Public & when to use Private?
 
 
