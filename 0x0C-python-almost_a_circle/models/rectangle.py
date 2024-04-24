@@ -17,7 +17,7 @@ class Rectangle(Base):
     def __getattr__(self, name):
         """ Generic Getter """
         return self.__dict__[f"__{name}"]
-    
+
     def __setattr__(self, name, value):
         """ Generic Setter """
         if not isinstance(value, int):
@@ -30,3 +30,7 @@ class Rectangle(Base):
                 raise ValueError(f"{name} must be >= 0")
 
         self.__dict__[f"__{name}"] = value
+
+    def area(self):
+        """ compute area method """
+        return self.width * self.height
