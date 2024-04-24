@@ -105,10 +105,15 @@ python -m unittest test_module1 test_module2
 python -m unittest test_module.TestClass
 python -m unittest test_module.TestClass.test_method
 ```
-You can run tests with more detail (higher verbosity) by passing in the -v flag:```
+
+You can run tests with more detail (higher verbosity) by passing in the -v flag:
+
+```
 python -m unittest -v test_module
 ```
+
 For a list of all the command-line options:
+
 ```
 python -m unittest -h
 ```
@@ -122,6 +127,7 @@ Unittest supports simple test discovery. In order to be compatible with test dis
 Test discovery is implemented in `TestLoader.discover()`, but can also be used from the command line.
 
 The basic command-line usage is:
+
 ```
 cd project_directory
 python -m unittest discover

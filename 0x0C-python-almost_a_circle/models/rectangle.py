@@ -14,42 +14,19 @@ class Rectangle(Base):
         self.y = y
         super().__init__(id)
 
-    @property
-    def width(self):
-        """ width getter """
-        return self.__width
+    def __getattr__(self, name):
+        """ Generic Getter """
+        return self.__dict__[f"__{name}"]
+    
+    def __setattr__(self, name, value):
+        """ Generic Setter """
+        if not isinstance(value, int):
+            raise TypeError(f"{name} must be an integer")
+        if name == "width" or name == "height":
+            if value <= 0:
+                raise ValueError(f"{name} must be > 0")
+        if name == "x" or name == "y":
+            if value < 0:
+                raise ValueError(f"{name} must be >= 0")
 
-    @property
-    def height(self):
-        """ height getter """
-        return self.__height
-
-    @property
-    def x(self):
-        """ x getter """
-        return self.__x
-
-    @property
-    def y(self):
-        """ y getter """
-        return self.__y
-
-    @width.setter
-    def width(self, value):
-        """ width setter """
-        self.__width = value
-
-    @height.setter
-    def height(self, value):
-        """ height setter """
-        self.__height = value
-
-    @x.setter
-    def x(self, value):
-        """ x setter """
-        self.__x = value
-
-    @y.setter
-    def y(self, value):
-        """ y setter """
-        self.__y = value
+        self.__dict__[f"__{name}"] = value
