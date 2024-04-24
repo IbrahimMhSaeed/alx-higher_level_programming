@@ -15,6 +15,7 @@ class Base:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
 
+    @staticmethod
     def to_json_string(list_dictionaries):
         """ to JSON string """
         if list_dictionaries is None:
@@ -39,14 +40,14 @@ class Base:
         """ from json string method """
         json_list = json.loads(json_string)
         if json_list is None:
-            return []
+            return list()
         else:
             return json_list
 
     @classmethod
     def create(cls, **dictionary):
         """ create method """
-        dummy = cls(10, 10, 1, 1)
+        dummy = cls(1, 1, 0, 0)
         dummy.update(**dictionary)
         return dummy
 
