@@ -38,16 +38,19 @@ class Base:
     @staticmethod
     def from_json_string(json_string):
         """ from json string method """
-        json_list = json.loads(json_string)
-        if json_list is None:
-            return list()
+        if json_string is None:
+            return []
         else:
+            json_list = json.loads(json_string)
             return json_list
 
     @classmethod
     def create(cls, **dictionary):
         """ create method """
-        dummy = cls(1, 1, 0, 0)
+        if cls.__name__ == "Square":
+            dummy = cls(size=1)
+        else:
+            dummy = cls(width=1, height=1)
         dummy.update(**dictionary)
         return dummy
 
