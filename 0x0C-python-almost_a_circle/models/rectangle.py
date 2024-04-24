@@ -17,22 +17,22 @@ class Rectangle(Base):
     @property
     def width(self):
         """ Generic Getter """
-        return self.__width
+        return self.__dict__["width"]
 
     @property
     def height(self):
         """ Generic Getter """
-        return self.__height
+        return self.__dict__["height"]
 
     @property
     def x(self):
         """ Generic Getter """
-        return self.__x
+        return self.__dict__["x"]
 
     @property
     def y(self):
         """ Generic Getter """
-        return self.__y
+        return self.__dict__["y"]
 
     @width.setter
     def width(self, value):
@@ -41,7 +41,7 @@ class Rectangle(Base):
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
-        self.__width = value
+        self.__dict__["width"] = value
 
     @height.setter
     def height(self, value):
@@ -50,7 +50,7 @@ class Rectangle(Base):
             raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be > 0")
-        self.__height = value
+        self.__dict__["height"] = value
 
     @x.setter
     def x(self, value):
@@ -59,7 +59,7 @@ class Rectangle(Base):
             raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
-        self.__x = value
+        self.__dict__["x"] = value
 
     @y.setter
     def y(self, value):
@@ -68,7 +68,7 @@ class Rectangle(Base):
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
-        self.__y = value
+        self.__dict__["y"] = value
 
     def area(self):
         """ compute area method """

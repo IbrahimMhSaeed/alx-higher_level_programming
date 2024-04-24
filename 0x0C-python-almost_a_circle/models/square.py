@@ -8,7 +8,6 @@ class Square(Rectangle):
 
     def __init__(self, size, x=0, y=0, id=None):
         """ init function """
-        self.size = size
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
@@ -20,7 +19,7 @@ class Square(Rectangle):
     @property
     def size(self):
         """ getter for size """
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
@@ -31,7 +30,6 @@ class Square(Rectangle):
             raise ValueError("width must be > 0")
         self.width = value
         self.height = value
-        self.__size = value
 
     def update(self, *args, **kwargs):
         """ update values """
