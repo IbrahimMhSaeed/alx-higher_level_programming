@@ -34,3 +34,21 @@ class Rectangle(Base):
     def area(self):
         """ compute area method """
         return self.width * self.height
+
+    def display(self):
+        """ display rectangle """
+        print("\n" * self.y, end="")
+        for i in range(self.height):
+            print(" " * self.x + "#" * self.width)
+
+    def __str__(self):
+        """ string printed for class """
+        return_str = f"[Rectangle] ({self.id}) "
+        return_str += f"{self.x}/{self.y} - {self.width}/{self.height}"
+        return return_str
+
+    def update(self, *args):
+        """ update values """
+        ll = ["id", "width", "height", "x", "y"]
+        for name, i in zip(ll, range(len(args))):
+            setattr(self, name, args[i])
