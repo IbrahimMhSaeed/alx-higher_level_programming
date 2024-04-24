@@ -41,3 +41,13 @@ class Square(Rectangle):
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def to_dictionary(self):
+        """ to dictionary function """
+        dd = {}
+        for key, value in self.__dict__.items():
+            if key == "width" or key == "height":
+                dd["size"] = self.__dict__[key]
+            else:
+                dd[key] = self.__dict__[key]
+        return dd
