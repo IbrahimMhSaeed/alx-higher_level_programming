@@ -8,6 +8,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_id(self):
         """ test id case """
+        Rectangle.reset()
         b1 = Rectangle(10, 20)
         self.assertEqual(b1.id, 1)
         self.assertEqual(b1.width, 10)

@@ -115,7 +115,7 @@ python -m doctest -v example.py[or .txt]
 ### Notes:
 1) If you encountered a bug and you found the cause of it, It's best practice to add a test case to it so you don't fall in the same hole again
 
-2) Check file "calc.py" and "test-calc.py" in learn for more examples
+2) Check file `calc.py` and `test_calc.py` in learn for more examples
 
 ### Steps:
 1) first => import unittest
